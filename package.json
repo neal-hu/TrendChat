@@ -13,8 +13,7 @@
     "mongodb": "latest",
     "mongojs": "latest",
     "monk": "latest",
-    "bcrypt-nodejs": "latest",
-    "sylvester":"latest"
+    "bcrypt-nodejs": "latest"
   },
   "author": "Neal"
 }

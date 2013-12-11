@@ -1,0 +1,277 @@
+0 info it worked if it ends with ok
+1 verbose cli [ '/usr/bin/node', '/usr/bin/npm', 'install' ]
+2 info using npm@1.3.14
+3 info using node@v0.10.22
+4 verbose node symlink /usr/bin/node
+5 warn package.json TrendChat@0.0.0 No repository field.
+6 warn package.json TrendChat@0.0.0 No README data
+7 verbose readDependencies using package.json deps
+8 verbose install where, deps [ '/home/ubuntu/TrendChat',
+8 verbose install   [ 'socket.io',
+8 verbose install     'express',
+8 verbose install     'jade',
+8 verbose install     'node-uuid',
+8 verbose install     'mongodb',
+8 verbose install     'mongojs',
+8 verbose install     'monk',
+8 verbose install     'bcrypt-nodejs' ] ]
+9 info preinstall TrendChat@0.0.0
+10 warn package.json sylvester@0.0.21 No repository field.
+11 verbose readDependencies using package.json deps
+12 verbose cache add [ 'jade@latest', null ]
+13 verbose cache add name=undefined spec="jade@latest" args=["jade@latest",null]
+14 verbose parsed url { protocol: null,
+14 verbose parsed url   slashes: null,
+14 verbose parsed url   auth: null,
+14 verbose parsed url   host: null,
+14 verbose parsed url   port: null,
+14 verbose parsed url   hostname: null,
+14 verbose parsed url   hash: null,
+14 verbose parsed url   search: null,
+14 verbose parsed url   query: null,
+14 verbose parsed url   pathname: 'jade@latest',
+14 verbose parsed url   path: 'jade@latest',
+14 verbose parsed url   href: 'jade@latest' }
+15 verbose cache add name="jade" spec="latest" args=["jade","latest"]
+16 verbose parsed url { protocol: null,
+16 verbose parsed url   slashes: null,
+16 verbose parsed url   auth: null,
+16 verbose parsed url   host: null,
+16 verbose parsed url   port: null,
+16 verbose parsed url   hostname: null,
+16 verbose parsed url   hash: null,
+16 verbose parsed url   search: null,
+16 verbose parsed url   query: null,
+16 verbose parsed url   pathname: 'latest',
+16 verbose parsed url   path: 'latest',
+16 verbose parsed url   href: 'latest' }
+17 verbose addNamed [ 'jade', 'latest' ]
+18 verbose addNamed [ null, null ]
+19 verbose cache add [ 'node-uuid@latest', null ]
+20 verbose cache add name=undefined spec="node-uuid@latest" args=["node-uuid@latest",null]
+21 verbose parsed url { protocol: null,
+21 verbose parsed url   slashes: null,
+21 verbose parsed url   auth: null,
+21 verbose parsed url   host: null,
+21 verbose parsed url   port: null,
+21 verbose parsed url   hostname: null,
+21 verbose parsed url   hash: null,
+21 verbose parsed url   search: null,
+21 verbose parsed url   query: null,
+21 verbose parsed url   pathname: 'node-uuid@latest',
+21 verbose parsed url   path: 'node-uuid@latest',
+21 verbose parsed url   href: 'node-uuid@latest' }
+22 verbose cache add name="node-uuid" spec="latest" args=["node-uuid","latest"]
+23 verbose parsed url { protocol: null,
+23 verbose parsed url   slashes: null,
+23 verbose parsed url   auth: null,
+23 verbose parsed url   host: null,
+23 verbose parsed url   port: null,
+23 verbose parsed url   hostname: null,
+23 verbose parsed url   hash: null,
+23 verbose parsed url   search: null,
+23 verbose parsed url   query: null,
+23 verbose parsed url   pathname: 'latest',
+23 verbose parsed url   path: 'latest',
+23 verbose parsed url   href: 'latest' }
+24 verbose addNamed [ 'node-uuid', 'latest' ]
+25 verbose addNamed [ null, null ]
+26 verbose cache add [ 'mongodb@latest', null ]
+27 verbose cache add name=undefined spec="mongodb@latest" args=["mongodb@latest",null]
+28 verbose parsed url { protocol: null,
+28 verbose parsed url   slashes: null,
+28 verbose parsed url   auth: null,
+28 verbose parsed url   host: null,
+28 verbose parsed url   port: null,
+28 verbose parsed url   hostname: null,
+28 verbose parsed url   hash: null,
+28 verbose parsed url   search: null,
+28 verbose parsed url   query: null,
+28 verbose parsed url   pathname: 'mongodb@latest',
+28 verbose parsed url   path: 'mongodb@latest',
+28 verbose parsed url   href: 'mongodb@latest' }
+29 verbose cache add name="mongodb" spec="latest" args=["mongodb","latest"]
+30 verbose parsed url { protocol: null,
+30 verbose parsed url   slashes: null,
+30 verbose parsed url   auth: null,
+30 verbose parsed url   host: null,
+30 verbose parsed url   port: null,
+30 verbose parsed url   hostname: null,
+30 verbose parsed url   hash: null,
+30 verbose parsed url   search: null,
+30 verbose parsed url   query: null,
+30 verbose parsed url   pathname: 'latest',
+30 verbose parsed url   path: 'latest',
+30 verbose parsed url   href: 'latest' }
+31 verbose addNamed [ 'mongodb', 'latest' ]
+32 verbose addNamed [ null, null ]
+33 verbose cache add [ 'mongojs@latest', null ]
+34 verbose cache add name=undefined spec="mongojs@latest" args=["mongojs@latest",null]
+35 verbose parsed url { protocol: null,
+35 verbose parsed url   slashes: null,
+35 verbose parsed url   auth: null,
+35 verbose parsed url   host: null,
+35 verbose parsed url   port: null,
+35 verbose parsed url   hostname: null,
+35 verbose parsed url   hash: null,
+35 verbose parsed url   search: null,
+35 verbose parsed url   query: null,
+35 verbose parsed url   pathname: 'mongojs@latest',
+35 verbose parsed url   path: 'mongojs@latest',
+35 verbose parsed url   href: 'mongojs@latest' }
+36 verbose cache add name="mongojs" spec="latest" args=["mongojs","latest"]
+37 verbose parsed url { protocol: null,
+37 verbose parsed url   slashes: null,
+37 verbose parsed url   auth: null,
+37 verbose parsed url   host: null,
+37 verbose parsed url   port: null,
+37 verbose parsed url   hostname: null,
+37 verbose parsed url   hash: null,
+37 verbose parsed url   search: null,
+37 verbose parsed url   query: null,
+37 verbose parsed url   pathname: 'latest',
+37 verbose parsed url   path: 'latest',
+37 verbose parsed url   href: 'latest' }
+38 verbose addNamed [ 'mongojs', 'latest' ]
+39 verbose addNamed [ null, null ]
+40 silly lockFile f6deb165-mongojs-latest mongojs@latest
+41 verbose lock mongojs@latest /home/ubuntu/.npm/f6deb165-mongojs-latest.lock
+42 verbose cache add [ 'monk@latest', null ]
+43 verbose cache add name=undefined spec="monk@latest" args=["monk@latest",null]
+44 verbose parsed url { protocol: null,
+44 verbose parsed url   slashes: null,
+44 verbose parsed url   auth: null,
+44 verbose parsed url   host: null,
+44 verbose parsed url   port: null,
+44 verbose parsed url   hostname: null,
+44 verbose parsed url   hash: null,
+44 verbose parsed url   search: null,
+44 verbose parsed url   query: null,
+44 verbose parsed url   pathname: 'monk@latest',
+44 verbose parsed url   path: 'monk@latest',
+44 verbose parsed url   href: 'monk@latest' }
+45 verbose cache add name="monk" spec="latest" args=["monk","latest"]
+46 verbose parsed url { protocol: null,
+46 verbose parsed url   slashes: null,
+46 verbose parsed url   auth: null,
+46 verbose parsed url   host: null,
+46 verbose parsed url   port: null,
+46 verbose parsed url   hostname: null,
+46 verbose parsed url   hash: null,
+46 verbose parsed url   search: null,
+46 verbose parsed url   query: null,
+46 verbose parsed url   pathname: 'latest',
+46 verbose parsed url   path: 'latest',
+46 verbose parsed url   href: 'latest' }
+47 verbose addNamed [ 'monk', 'latest' ]
+48 verbose addNamed [ null, null ]
+49 silly lockFile b68dca49-monk-latest monk@latest
+50 verbose lock monk@latest /home/ubuntu/.npm/b68dca49-monk-latest.lock
+51 verbose cache add [ 'bcrypt-nodejs@latest', null ]
+52 verbose cache add name=undefined spec="bcrypt-nodejs@latest" args=["bcrypt-nodejs@latest",null]
+53 verbose parsed url { protocol: null,
+53 verbose parsed url   slashes: null,
+53 verbose parsed url   auth: null,
+53 verbose parsed url   host: null,
+53 verbose parsed url   port: null,
+53 verbose parsed url   hostname: null,
+53 verbose parsed url   hash: null,
+53 verbose parsed url   search: null,
+53 verbose parsed url   query: null,
+53 verbose parsed url   pathname: 'bcrypt-nodejs@latest',
+53 verbose parsed url   path: 'bcrypt-nodejs@latest',
+53 verbose parsed url   href: 'bcrypt-nodejs@latest' }
+54 verbose cache add name="bcrypt-nodejs" spec="latest" args=["bcrypt-nodejs","latest"]
+55 verbose parsed url { protocol: null,
+55 verbose parsed url   slashes: null,
+55 verbose parsed url   auth: null,
+55 verbose parsed url   host: null,
+55 verbose parsed url   port: null,
+55 verbose parsed url   hostname: null,
+55 verbose parsed url   hash: null,
+55 verbose parsed url   search: null,
+55 verbose parsed url   query: null,
+55 verbose parsed url   pathname: 'latest',
+55 verbose parsed url   path: 'latest',
+55 verbose parsed url   href: 'latest' }
+56 verbose addNamed [ 'bcrypt-nodejs', 'latest' ]
+57 verbose addNamed [ null, null ]
+58 silly lockFile 8a2c73f6-bcrypt-nodejs-latest bcrypt-nodejs@latest
+59 verbose lock bcrypt-nodejs@latest /home/ubuntu/.npm/8a2c73f6-bcrypt-nodejs-latest.lock
+60 verbose cache add [ 'socket.io@latest', null ]
+61 verbose cache add name=undefined spec="socket.io@latest" args=["socket.io@latest",null]
+62 verbose parsed url { protocol: null,
+62 verbose parsed url   slashes: null,
+62 verbose parsed url   auth: null,
+62 verbose parsed url   host: null,
+62 verbose parsed url   port: null,
+62 verbose parsed url   hostname: null,
+62 verbose parsed url   hash: null,
+62 verbose parsed url   search: null,
+62 verbose parsed url   query: null,
+62 verbose parsed url   pathname: 'socket.io@latest',
+62 verbose parsed url   path: 'socket.io@latest',
+62 verbose parsed url   href: 'socket.io@latest' }
+63 verbose cache add name="socket.io" spec="latest" args=["socket.io","latest"]
+64 verbose parsed url { protocol: null,
+64 verbose parsed url   slashes: null,
+64 verbose parsed url   auth: null,
+64 verbose parsed url   host: null,
+64 verbose parsed url   port: null,
+64 verbose parsed url   hostname: null,
+64 verbose parsed url   hash: null,
+64 verbose parsed url   search: null,
+64 verbose parsed url   query: null,
+64 verbose parsed url   pathname: 'latest',
+64 verbose parsed url   path: 'latest',
+64 verbose parsed url   href: 'latest' }
+65 verbose addNamed [ 'socket.io', 'latest' ]
+66 verbose addNamed [ null, null ]
+67 silly lockFile d01f6c55-socket-io-latest socket.io@latest
+68 verbose lock socket.io@latest /home/ubuntu/.npm/d01f6c55-socket-io-latest.lock
+69 verbose cache add [ 'express@latest', null ]
+70 verbose cache add name=undefined spec="express@latest" args=["express@latest",null]
+71 verbose parsed url { protocol: null,
+71 verbose parsed url   slashes: null,
+71 verbose parsed url   auth: null,
+71 verbose parsed url   host: null,
+71 verbose parsed url   port: null,
+71 verbose parsed url   hostname: null,
+71 verbose parsed url   hash: null,
+71 verbose parsed url   search: null,
+71 verbose parsed url   query: null,
+71 verbose parsed url   pathname: 'express@latest',
+71 verbose parsed url   path: 'express@latest',
+71 verbose parsed url   href: 'express@latest' }
+72 verbose cache add name="express" spec="latest" args=["express","latest"]
+73 verbose parsed url { protocol: null,
+73 verbose parsed url   slashes: null,
+73 verbose parsed url   auth: null,
+73 verbose parsed url   host: null,
+73 verbose parsed url   port: null,
+73 verbose parsed url   hostname: null,
+73 verbose parsed url   hash: null,
+73 verbose parsed url   search: null,
+73 verbose parsed url   query: null,
+73 verbose parsed url   pathname: 'latest',
+73 verbose parsed url   path: 'latest',
+73 verbose parsed url   href: 'latest' }
+74 verbose addNamed [ 'express', 'latest' ]
+75 verbose addNamed [ null, null ]
+76 silly lockFile c30a01ab-express-latest express@latest
+77 verbose lock express@latest /home/ubuntu/.npm/c30a01ab-express-latest.lock
+78 silly lockFile f6deb165-mongojs-latest mongojs@latest
+79 error Error: ENOENT, open '/home/ubuntu/.npm/f6deb165-mongojs-latest.lock'
+80 error If you need help, you may report this log at:
+80 error     <http://github.com/isaacs/npm/issues>
+80 error or email it to:
+80 error     <npm-@googlegroups.com>
+81 error System Linux 3.11.0-12-generic
+82 error command "/usr/bin/node" "/usr/bin/npm" "install"
+83 error cwd /home/ubuntu/TrendChat
+84 error node -v v0.10.22
+85 error npm -v 1.3.14
+86 error path /home/ubuntu/.npm/f6deb165-mongojs-latest.lock
+87 error code ENOENT
+88 error errno 34
+89 verbose exit [ 34, true ]

@@ -19,7 +19,7 @@ var mongo = require('mongodb');
 //var monk = require('monk');
 var bcrypt = require('bcrypt-nodejs');
 var mongojs = require('mongojs');
-var userDB = mongojs('localhost:27017/trendChat',['Users']);
+var userDB = mongojs('127.0.0.1:27017/trendChat',['Users']);
 //var Users = userDB.collection('Users');
 
 var app = express();
@@ -52,7 +52,7 @@ app.post('/login_post', login.submit);
 
 var io = require("socket.io");
 var socket = io.listen(app.listen(app.get('port')));
-var Conversation = require('./Conversation.js');
+var Conversation = require('./conversation.js');
 var uuid = require('node-uuid');
 
 socket.set("log level", 1);
