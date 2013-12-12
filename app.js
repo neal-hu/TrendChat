@@ -20,7 +20,10 @@ var mongo = require('mongodb');
 var bcrypt = require('bcrypt-nodejs');
 var mongojs = require('mongojs');
 var userDB = mongojs('127.0.0.1:27017/trendChat',['Users']);
+var cookie = require('cookie');
 //var Users = userDB.collection('Users');
+var MemoryStore = express.session.MemoryStore;
+var sessionStore = new MemoryStore();
 
 var app = express();
 
@@ -29,7 +32,7 @@ app.set('port', process.env.PORT || 8000);
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'jade');
 app.use(express.cookieParser());
-app.use(express.session({secret: '1234567890QWERTY'}));
+app.use(express.session({store: sessionStore, secret: '1234567890QWERTY', key: 'express.sid'}));
 app.use(express.favicon());
 app.use(express.logger('dev'));
 app.use(express.json());
@@ -49,6 +52,10 @@ app.get('/', login.home);
 app.get('/survey', survey.index);
 app.post('/survey_post', survey.submit);
 app.post('/login_post', login.submit);
+app.get('/logout', function(req, res){
+	req.session.username = '';
+	res.redirect("/");
+});
 
 var io = require("socket.io");
 var socket = io.listen(app.listen(app.get('port')));
@@ -62,9 +69,34 @@ var clients = [];
 var conversations = {};
 var availableClient = [];
 var onlineClient = [];
+var parseCookie = require('connect').utils.parseCookie;
 
+socket.set('authorization', function (data, accept) {
+    if (data.headers.cookie) {
+        data.cookie = cookie.parse(data.headers.cookie);
+        data.sessionID = data.cookie['express.sid'];
+        // (literally) get the session data from the session store
+        sessionStore.get(data.sessionID, function (err, session) {
+            console.log(data.sessionID);
+            if (err || !session) {
+                // if we cannot grab a session, turn down the connection
+                //accept('Error', false);
+                accept(null, true);
+            } else {
+                // save the session data and accept the connection
+                console.log(session);
+                data.session = session;
+                accept(null, true);
+            }
+        });
+    } else {
+       return accept('No cookie transmitted.', false);
+    }
+});
 
 socket.on("connection", function (client){
+	console.log('A socket with sessionID ' + client.handshake.username 
+        + ' connected!');
 	function recommendNews(topic, fn){
 		// recommend a piece of news
 		http.get(url+'&section='+topic, function(res){
@@ -74,12 +106,17 @@ socket.on("connection", function (client){
 				body+=chunk;
 			});
 			res.on('end',function(){
-				var response = JSON.parse(body);
-				news = (response.stories)[0].description;
-				//console.log(news);
-				if (fn){
-					fn(news);		
-				}		
+				try{ 
+					var response = JSON.parse(body);
+					news = (response.stories)[0].description;
+					//console.log(news);
+					if (fn){
+						fn(news);		
+					}	
+				}
+				catch(err){
+					console.log("API down");
+				}	
 			});
 		});
 	}
@@ -169,7 +206,7 @@ socket.on("connection", function (client){
 		//console.log(client);
 		console.log("In "+client.conversation);
 		if (socket.sockets.manager.roomClients[client.id]['/'+client.conversation]!= undefined){
-			socket.sockets.in(client.conversation).emit("chat", client.username+ ": " +msg);
+			socket.sockets.in(client.conversation).emit("chat", client.username,msg);
 		}else{
 			client.emit("update", "Please wait until someone joins you.");
 		}

@@ -5,11 +5,27 @@ html
 		link(rel='stylesheet', href='/stylesheets/bootstrap.css')
 		script(src='/javascripts/survey.js')
 		script(src='/socket.io/socket.io.js')
-		
+		link(rel='stylesheet', href='/stylesheets/app.css')
 
-	body			
+
+	body
+		div(class="container main")
+		div(class='navbar navbar-inverse navbar-fixed-top')
+			div(class="navbar-inner")
+				div(class="container")
+					a(class="btn btn-navbar" data=toggle="collapse" data-target=".nav-collapse")
+						span(class="icon-bar")
+						span(class="icon-bar")
+						span(class="icon-bar")
+					a(class="brand" href='#')  &nbsp&nbsp&nbspTrendChat
+					div(class="nav-collapse collapse")
+						ul(class="nav")
+								a(class="nav brand", type="button",style="font-size:15px",href="logout") Logout
 		script(src="/javascripts/bootstrap.js")
-		h1 Survey Time!
-		p Please finished the survey to continue
+		br
+		br			
+		script(src="/javascripts/bootstrap.js")
+		h1 &nbspSurvey Time!
+		p &nbsp&nbspPlease finished the survey to continue
 		#content
 

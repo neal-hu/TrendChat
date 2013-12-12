@@ -4,18 +4,48 @@ html
 		meta(charset='utf-8')
 		title= TrendChat
 		link(rel='stylesheet', href='/stylesheets/bootstrap.css')
+		link(rel='stylesheet', href='/stylesheets/app.css')
 		script(src='/javascripts/chat.js')
 		script(src='/socket.io/socket.io.js')
 	body
 		script(src="/javascripts/bootstrap.js")
-		#username #{username}
-		#content
-			#update(style="width: 500px; height: 50px;border: solid 1px #999; overflow-y: scroll;")
-			#news(style="width: 100px; height: 200px;float: left; border: solid 1px #999; overflow-y: scroll;")
-			#chat(style="width: 400px; height: 200px;float: left; border: solid 1px #999; overflow-y: scroll;")
-		div(style="clear:both;")
-			input#field(type="text", style="width:100px;")
-			input#send(type="button", value="send")
-		div(style="clear:both")
-			input#leaveConversation(type="button", value="Leave Conversation")
-			input#Match(type="button", value="Match me with someone")
+		div(class='navbar navbar-inverse navbar-fixed-top')
+			div(class="navbar-inner")
+				div(class="container")
+					a(class="btn btn-navbar" data=toggle="collapse" data-target=".nav-collapse")
+						span(class="icon-bar")
+						span(class="icon-bar")
+						span(class="icon-bar")
+					a(class="brand" href='#') &nbsp&nbsp&nbspTrendChat
+					div(class="nav-collapse collapse")
+						ul(class="nav")
+							li
+								input(id="username",class="nav brand", value = username, type="button",style="background:none;border:none;font-size:15px") 
+							li
+								input#Match(class="nav brand", type="button", value="Match me with someone",style="    background:none;border:none;box-shadow:none;font-size:15px")
+							li
+								input#leaveConversation(class="nav brand",type="button", value="Leave Conversation",style="    background:none;border:none;box-shadow:none;font-size:15px")
+							li
+								a(class="nav brand", type="button",style="font-size:15px",href="logout") Logout 
+
+
+		script(src="/javascripts/bootstrap.js")
+		br
+		br
+		div(class="container main")
+			div(class="row", style="margin-left:2cm")
+				div(class="span6 pull-left" id="chat-window")
+					div(class="column-pad")
+						div(id = "news", class="column-pad",style=" width: 400px; height: 50px;overflow-y: scroll;border: solid 2px #ccc;background-color: #fff")
+
+						div(id ="chat", class="column-pad",style="width: 400px; height: 200px; overflow-y: scroll; border: solid 2px #ccc;background-color: #fff")
+					div(class="pagination-centered")
+						div(class="input-append")
+							input#field(class="span5", type="text")
+							button#send(class="btn btn-primary",type="button")
+								i(class="icon-comment icon-white",style="background-image: url(\"../img/glyphicons-halflings-white.png\")")
+
+
+		
+
+

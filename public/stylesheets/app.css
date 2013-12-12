@@ -1,0 +1,31 @@
+body {
+	padding: 40px;
+	background-color: #eee;
+}
+
+.column-pad {
+	padding: 10px;
+}
+
+#chat-background {
+	margin-top: 40px;
+	padding: 40px;
+}
+
+#chat-window {
+}
+
+#chat-messages {
+	background-color: #fff;
+	border: 2px solid #ccc;
+}
+
+#chat-submission {
+	margin-top: 10px;
+}
+
+/* Why is this not aligned with #chat-messages? */
+#participant-list {
+	background-color: #fff;
+	border: 2px solid #ccc;
+}

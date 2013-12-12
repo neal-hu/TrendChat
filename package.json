@@ -13,7 +13,8 @@
     "mongodb": "latest",
     "mongojs": "latest",
     "monk": "latest",
-    "bcrypt-nodejs": "latest"
+    "bcrypt-nodejs": "latest",
+    "cookie": "latest"
   },
   "author": "Neal"
 }

@@ -3,7 +3,8 @@ window.onload = function() {
 	var messages = [];
 	var userList = [];
 	var updateList = [];
-	var socket = io.connect('http://54.209.164.0');
+	//var socket = io.connect('http://54.209.164.0');
+	var socket = io.connect('http://localhost:8000');
 	var field = document.getElementById("field");
 	var name = document.getElementById("name");
 	var sendButton = document.getElementById("send");
@@ -17,14 +18,19 @@ window.onload = function() {
 	var started = false;
 
 
-	socket.on('chat', function (data){
-		if(data){
+	socket.on('chat', function (name, data){
+		if(name && data){
 			// messages.push(data);
 			// var html = "";
 			// for (var i=0; i<messages.length; i++){
 			// 	html += messages[i] + '<br />';
 			// }
-			chatContent.innerHTML += data +'<br />';
+			chatContent.innerHTML += '<div class=\"chat-msg\">';
+			chatContent.innerHTML += '<strong>'+name+'<strong>';
+			chatContent.innerHTML += '<span class=\"chat-delim\">:</span>';
+			chatContent.innerHTML += '<span class=\"chat-text\">'+data+'</span>';
+			//chatContent.innerHTML += data +'<br />';
+			chatContent.innerHTML += '</div>';
 			chatContent.scrollTop = chatContent.scrollHeight;
 		}else {
 			console.log("There is a problem:", data);
@@ -42,7 +48,7 @@ window.onload = function() {
 		//console.log("here");
 		var tmp = '';
 		tmp += data + '<br />';
-		updateContent.innerHTML = tmp;
+		newsContent.innerHTML = tmp;
 
 	});
 	field.onkeydown = function(e) {
@@ -66,7 +72,7 @@ window.onload = function() {
 
 	matchButton.onclick = function(){
 		// if (!started){
-		socket.emit('startChat', username.textContent);
+		socket.emit('startChat', username.value);
 		// 	started = true;
 		// }else{
 		// 	socket.emit('match', username.textContent);
