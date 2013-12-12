@@ -3,8 +3,8 @@ window.onload = function() {
 	var messages = [];
 	var userList = [];
 	var updateList = [];
-	var socket = io.connect('http://54.209.164.0');
-	//var socket = io.connect('http://localhost:8000');
+	//var socket = io.connect('http://54.209.164.0');
+	var socket = io.connect('http://localhost:8000');
 	var field = document.getElementById("field");
 	var name = document.getElementById("name");
 	var sendButton = document.getElementById("send");
@@ -37,10 +37,10 @@ window.onload = function() {
 		}
 	});
 
-	socket.on('update-news', function (data){
+	socket.on('update-news', function (data, link){
 		if(data){
 			newsContent.innerHTML = "How do you guys think of this?<br />"
-			newsContent.innerHTML += data;
+			newsContent.innerHTML += "<a href=\"" + link + "\">"+data+"</a>";
 		}
 	});
 

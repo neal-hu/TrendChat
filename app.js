@@ -24,8 +24,9 @@ var cookie = require('cookie');
 //var Users = userDB.collection('Users');
 var MemoryStore = express.session.MemoryStore;
 var sessionStore = new MemoryStore();
-
+var finished = false;
 var app = express();
+var idUsername = {};
 
 // all environments
 app.set('port', process.env.PORT || 8000);
@@ -46,7 +47,7 @@ if ('development' == app.get('env')) {
   app.use(express.errorHandler());
 }
 
-
+// routes
 app.get('/chat', chat.index);
 app.get('/', login.home);
 app.get('/survey', survey.index);
@@ -55,6 +56,9 @@ app.post('/login_post', login.submit);
 app.get('/logout', function(req, res){
 	req.session.username = '';
 	res.redirect("/");
+});
+app.use(function(req, res) {
+    res.redirect('/')
 });
 
 var io = require("socket.io");
@@ -95,10 +99,13 @@ socket.set('authorization', function (data, accept) {
 });
 
 socket.on("connection", function (client){
-	console.log('A socket with sessionID ' + client.handshake.username 
-        + ' connected!');
+	if (idUsername[client.handshake.username]){
+		client.username = idUsername[client.handshake.username];
+	}
+
 	function recommendNews(topic, fn){
 		// recommend a piece of news
+		console.log(topic);
 		http.get(url+'&section='+topic, function(res){
 			var news = '';
 			var body = '';
@@ -109,9 +116,10 @@ socket.on("connection", function (client){
 				try{ 
 					var response = JSON.parse(body);
 					news = (response.stories)[0].description;
+					link = (response.stories)[0].link;
 					//console.log(news);
 					if (fn){
-						fn(news);		
+						fn(news, link);		
 					}	
 				}
 				catch(err){
@@ -144,7 +152,7 @@ socket.on("connection", function (client){
 				// client join conversation
 				onlineClient[matchUser].join(conversationName);
 				onlineClient[username].join(conversationName);
-				socket.sockets.in(conversationName).emit("update", username + " and "+ matchUser+ " have started a conversation.");
+				socket.sockets.in(conversationName).emit("update", username + " and "+ matchUser+ " have started a conversation. Please wait for the hottest news...");
 				// remove them from available client list
 				for (var i=availableClient.length-1;i>=0;i--){
 					if (availableClient[i] == username || availableClient[i] == matchUser) {
@@ -152,8 +160,8 @@ socket.on("connection", function (client){
 						availableClient.splice(i,1);
 					}
 				}
-				recommendNews(maxTopic,function(news){
-					socket.sockets.in(client.conversation).emit('update-news', news);
+				recommendNews(maxTopic,function(news, link){
+					socket.sockets.in(client.conversation).emit('update-news', news,link);
 				});
 				
 
@@ -178,7 +186,8 @@ socket.on("connection", function (client){
 		// push user into online list
 		// client.username = username;
 		if (!onlineClient[username]){
-			onlineClient[username] = client;	
+			onlineClient[username] = client;
+			idUsername[client.handshake.username] = username;	
 			client.username = username; 
 			availableClient.push(username);
 			console.log(username+" has joined the available list.");
@@ -255,19 +264,25 @@ socket.on("connection", function (client){
 	client.on("signup", function(userdata){
 		if (userdata.username && userdata.password){
 			//var collection = db.get('usercollection');
+			finished = false;
 			userDB.Users.find({"username": userdata.username}).forEach(function(err, data){
+				if (finished == true) return;
 				if (!data){
 					bcrypt.hash(userdata.password, null, null, function(err, hash) {
 						userDB.Users.insert({"username": userdata.username, "password": hash}, function(err, data){
 							if (err){
 								client.emit("signup_result","failed");
+								finished = true;
 							}else{
 								client.emit("signup_result", "succeeded");
+								finished = true;
 							}
 						});				
 					});	
+					finished = true;
 				}else{
 					client.emit("signup_result","failed");
+					finished = true;
 				}
 			});		
 		}		
@@ -277,17 +292,24 @@ socket.on("connection", function (client){
 	client.on("login", function(userdata){
 		if (userdata.username && userdata.password){
 			//var collection = db.get('usercollection');
+			finished = false;
 			userDB.Users.find({"username": userdata.username}).forEach(function(err, data){
+				console.log(finished);
+				if (finished == true) return;
 				if (!data){
 					client.emit("login_result","failed");
+					finished = true;
 				}else{
 					bcrypt.compare(userdata.password, data.password, function(err, res) {
 						if (res){
 							client.emit("login_result", data.username);
+							finished = true;
 						}else{
 							client.emit("login_result","failed");
+							finished =  true;
 						}
-					});				
+					});		
+					finished = true;	
 				}
 			});				
 		}

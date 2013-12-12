@@ -11,7 +11,7 @@ var num_prop = 7;
 var hidden_prop = 15;
 var num_user = 0;
 var prop_map = {"Politics":1,"Movies":2,"Books":3,"Music":4,"NBA":5,"Financial Market":6,"High Tech":7};
-var prop_topic = {1:"washington",2:"movies",3:"books",4:"music",5:"nba",6:"money",7:"tech"};
+var prop_topic = {1:"nation",2:"movies",3:"books",4:"music",5:"nba",6:"money",7:"tech"};
 var user_map = {};
 
 
@@ -22,6 +22,7 @@ function _read(userCol,callback){
 	console.log("ReadStart");
 	var cursor = userCol.find({});
 	cursor.count(function(err, count){
+		console.log("count: ", count);
 		num_user = count;
 		user_matrix = Matrix.Zeros(num_prop, num_user);
 		dictionary = Matrix.Random(num_prop, hidden_prop);
@@ -83,6 +84,7 @@ function WNMF(callback){
 	//console.log(user_matrix.subtract(d.multiply(r)).sum());
 	user_matrix = dictionary.multiply(rating);
 	console.log(user_matrix);
+	console.log('');
 	return {"rating": rating, "dictionary": dictionary};
 }
 // store to database
