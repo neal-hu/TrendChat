@@ -69,8 +69,9 @@ function setParams(um, d, r, up){
 // run NMF
 function WNMF(callback){
 	var W = user_matrix.nonZerop();
+	W = W.subtract(-0.00000001);
 	user_matrix = user_matrix.subtract(-0.0000001);
-	for (var i=1; i<100; i++){
+	for (var i=1; i<30; i++){
 		// dictionary = dictionary.dotMultiply(user_matrix.multiply(rating.transpose())).dotDiv(dictionary.multiply(rating.multiply(rating.transpose())));
   //       rating = rating.dotMultiply(dictionary.transpose().multiply(user_matrix)).dotDiv(dictionary.transpose().multiply(dictionary.multiply(rating)));
  	 	dictionary = dictionary.dotMultiply(W.dotMultiply(user_matrix).multiply(rating.transpose())).dotDiv((W.dotMultiply(dictionary.multiply(rating))).multiply(rating.transpose()));
@@ -81,6 +82,7 @@ function WNMF(callback){
 	}
 	//console.log(user_matrix.subtract(d.multiply(r)).sum());
 	user_matrix = dictionary.multiply(rating);
+	console.log(user_matrix);
 	return {"rating": rating, "dictionary": dictionary};
 }
 // store to database
