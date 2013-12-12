@@ -1,6 +1,6 @@
 window.onload = function() {
-	//var socket = io.connect('http://54.209.164.0');
-	var socket = io.connect('http://localhost:8000');
+	var socket = io.connect('http://54.209.164.0');
+	//var socket = io.connect('http://localhost:8000');
 	var status = document.getElementById("status");
 	var content = document.getElementById("content");
 	var username = document.getElementById("username");
