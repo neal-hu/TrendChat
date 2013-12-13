@@ -27,6 +27,7 @@ var sessionStore = new MemoryStore();
 var finished = false;
 var app = express();
 var idUsername = {};
+var idConversation = {};
 
 // all environments
 app.set('port', process.env.PORT || 8000);
@@ -54,7 +55,7 @@ app.get('/survey', survey.index);
 app.post('/survey_post', survey.submit);
 app.post('/login_post', login.submit);
 app.get('/logout', function(req, res){
-	req.session.username = '';
+	req.session.destroy();
 	res.redirect("/");
 });
 app.use(function(req, res) {
